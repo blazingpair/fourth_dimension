@@ -4,7 +4,7 @@ module Geometry
   class Cube < Figure
     def volume
       case space.dimensions
-      when 0, 1:
+      when 0, 1
         super
       else
         from_previous_dimension.volume * side
