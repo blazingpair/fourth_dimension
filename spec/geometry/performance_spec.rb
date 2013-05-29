@@ -10,7 +10,7 @@ describe "Calculations should be relatively fast" do
   end
 
   after :each do
-    @benchmark.utime.should be_close(0.069, 0.04)
+    @benchmark.utime.should be_within(0.015).of(0.015)
   end
 
   PERFORMANCE_FACTOR = 1.4
