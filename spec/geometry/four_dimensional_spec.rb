@@ -26,18 +26,18 @@ describe Geometry::Space do
       end
 
       it "#calc_volume" do
-        @pentachoron.calc_volume(1000).should be_close(@pentachoron.volume, 0.001)
+        @pentachoron.calc_volume(1000).should be_within(0.001).of(@pentachoron.volume)
       end
 
       it "#height" do
         height = @pentachoron.height
         height.should be_very_close(0.790569415042095)
-        @pentachoron.calc_height(10000).should be_close(height, 0.0001)
+        @pentachoron.calc_height(10000).should be_within(0.0001).of(height)
       end
 
       it "#height_from_simple_formula" do
         @pentachoron.height_from_simple_formula.should be_very_close(@pentachoron.height)
-        @four_dimensions.simplex(2).height_from_simple_formula.should be_close(2 * @pentachoron.height, 2 * ::Float::EPSILON)
+        @four_dimensions.simplex(2).height_from_simple_formula.should be_within(2 * ::Float::EPSILON).of(2 * @pentachoron.height)
       end
     end
 

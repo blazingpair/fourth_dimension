@@ -87,7 +87,7 @@ describe Geometry::Surface do
 
       (2..6).each do |precision|
         it "should approximate with #{precision} digits precision" do
-          @triangle.calc_height(10**precision).should be_close(@triangle.height, 1.0/(10**precision))
+          @triangle.calc_height(10**precision).should be_within(1.0/(10**precision)).of(@triangle.height)
         end
       end
 

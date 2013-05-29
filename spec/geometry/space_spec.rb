@@ -54,7 +54,7 @@ describe Geometry::ThreeDimensionalSpace do
         end
 
         it "should approximate volume with precision" do
-          @tetrahedron.calc_volume(10000).should be_close(@tetrahedron.volume, 0.0001)
+          @tetrahedron.calc_volume(10000).should be_within(0.0001).of(@tetrahedron.volume)
         end
       end
 
@@ -65,7 +65,7 @@ describe Geometry::ThreeDimensionalSpace do
         end
         
         it "should have a known height of sqrt(2/3)=sqrt(2)/sqrt(3)=%1.2f/%1.2f=%1.2f" % [Math.sqrt(2.0), Math.sqrt(3.0), Math.sqrt(2.0/3)] do
-          @tetrahedron.height.should be_close(Math.sqrt(2.0/3), 0.001)
+          @tetrahedron.height.should be_within(0.001).of(Math.sqrt(2.0/3))
         end
 
         [0, 1, 2, 50].each do |size|
@@ -73,7 +73,7 @@ describe Geometry::ThreeDimensionalSpace do
             @space.tetrahedron(5).height.should be_very_close(5 * Math.sqrt(2.0/3))
 
             tetrahedron = @space.tetrahedron(size)
-            tetrahedron.height.should be_close(size * Math.sqrt(2.0/3), ::Float::EPSILON * (1 + size))
+            tetrahedron.height.should be_within(::Float::EPSILON * (1 + size)).of(size * Math.sqrt(2.0/3))
           end
         end
 
